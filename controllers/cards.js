@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Card = require("../models/card");
+const mongoose = require('mongoose');
+const Card = require('../models/card');
 const {
   CREATED_CODE,
   INCORRECT_ERROR_CODE,
@@ -8,15 +8,13 @@ const {
   NOT_FOUND_CARD_MESSAGE,
   INCORRECT_ERROR_MESSAGE,
   DEFAULT_ERROR_MESSAGE,
-} = require("../utils/constants");
+} = require('../utils/constants');
 
 module.exports.getCards = (req, res) => {
   Card.find({})
-    .populate(["owner", "likes"])
+    .populate(['owner', 'likes'])
     .then((card) => res.send({ data: card }))
-    .catch(() =>
-      res.status(DEFAULT_ERROR_CODE).send({ message: DEFAULT_ERROR_MESSAGE })
-    );
+    .catch(() => res.status(DEFAULT_ERROR_CODE).send({ message: DEFAULT_ERROR_MESSAGE }));
 };
 
 module.exports.createCard = (req, res) => {
@@ -59,7 +57,7 @@ module.exports.deleteCardById = (req, res) => {
 
 function modifyLike(req, res, action) {
   Card.findByIdAndUpdate(req.params.cardId, action, { new: true })
-    .populate("likes")
+    .populate('likes')
     .then((card) => {
       if (card === null) {
         return res

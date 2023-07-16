@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const User = require("../models/user");
+const mongoose = require('mongoose');
+const User = require('../models/user');
 const {
   CREATED_CODE,
   INCORRECT_ERROR_CODE,
@@ -8,7 +8,7 @@ const {
   NOT_FOUND_USER_MESSAGE,
   INCORRECT_ERROR_MESSAGE,
   DEFAULT_ERROR_MESSAGE,
-} = require("../utils/constants");
+} = require('../utils/constants');
 
 module.exports.createUser = (req, res) => {
   const { name, about, avatar } = req.body;
@@ -29,9 +29,7 @@ module.exports.createUser = (req, res) => {
 module.exports.getUsers = (req, res) => {
   User.find({})
     .then((user) => res.send({ data: user }))
-    .catch(() =>
-      res.status(DEFAULT_ERROR_CODE).send({ message: DEFAULT_ERROR_MESSAGE })
-    );
+    .catch(() => res.status(DEFAULT_ERROR_CODE).send({ message: DEFAULT_ERROR_MESSAGE }));
 };
 
 module.exports.getUserById = (req, res) => {
